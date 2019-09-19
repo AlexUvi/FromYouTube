@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  *Finding the minimum element in an array
  */
@@ -30,13 +28,13 @@ import java.util.Arrays;
  * на больших массивах. Сложность O(n).
  */
 
-//public class Task {                                                                                                   // 1st ver.
+//public class Task {                                                                                        // 1st ver.
 //
 //    public static void main(String[] args) {
 //        int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
 //        System.out.println(Arrays.toString(array));
 //
-//        System.out.println(searchLinear(array, 10));
+//        System.out.println(searchLinear(array, 36));
 //    }
 //
 //    public static int searchLinear(int[] array, int elementToFind) {
@@ -52,7 +50,7 @@ import java.util.Arrays;
 //    }
 //}
 
-//public class Task {                                                                                                   //2nd ver.
+//public class Task {                                                                                         //2nd ver.
 //
 //    public static void main(String[] args) {
 //        int index = linearSearch(new int[]{89, 57, 91, 47, 95, 3, 27, 22, 67, 99}, 57);
@@ -79,137 +77,181 @@ import java.util.Arrays;
 //    }
 //}
 
+import java.util.Arrays;
+
 /**
  * Binary Searching ОБЯЗАТЕЛЬНОЕ УСЛОВИЕ: массив предварительно должен быть отсортирован. Берем средний эл-т отсорт-го
  * массива и сравниваем его с искомым. Если тот больше среднего эл-та, то дальше рассматриваем только правую половину
  * массива, меньше - только левую половину. Повторям алгоримт до результата. Максимальное кол-во шагов это log2(N), так
- * при 1024 элементах массива отсутствие эл-та будет найдено за 10 шагов. Сложность O(log2 n).
+ * при 1024 элементах массива отсутствие эл-та будет найдено за 10 шагов. Сложность O(log2 n). Двоичный поиск реализован
+ * в методе Arrays.binarySearch Java API.
  */
 
-//public class Task {                                                                                                   // 1st ver.
+
+//public class Task {                                                                                        // 1st ver.
 //
 //    public static void main(String[] args) {
 //        int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
 //        bubbleSort(array);
 //        System.out.println(Arrays.toString(array));
-//        System.out.println(searchBinary(array, 36));
-////        System.out.println(searchBinaryRecursive(array, 0,array.length - 1, 42));
+////        System.out.println(searchBinary(array, 36));
+//        System.out.println(searchBinaryRecursive(array, 0, array.length - 1, 100));
 //    }
 //
-//    public static int searchBinary(int[] array, int elementToFind) {
-//        int startIndex = 0;
-//        int endIndex = array.length - 1;
-//        int middleIndex;
-//        while (startIndex <= endIndex) {
-//            middleIndex = startIndex + (endIndex - startIndex) / 2;
-//            System.out.println("startIndex: " + startIndex + ", endIndex: " + endIndex + ", middleIndex: " + middleIndex);
-//
-//            if (array[middleIndex] == elementToFind) {
-//                System.out.println("found " + elementToFind + " at " + middleIndex);
-//                return middleIndex;
-//            }
-//
-//            if (array[middleIndex] > elementToFind) {
-//                endIndex = middleIndex - 1;
-//            } else {
-//                startIndex = middleIndex + 1;
-//            }
-//        }
-//        return -1;
-//    }
-//
-////    public static int searchBinaryRecursive(int array[], int startIndex, int endIndex, int elementToFind) {
-////        if (endIndex >= startIndex) {
-////            int middleIndex = startIndex + (endIndex - startIndex) / 2;
+////    public static int searchBinary(int[] array, int elementToFind) {
+////        int startIndex = 0;
+////        int endIndex = array.length - 1;
+////        int middleIndex;
+////        while (startIndex <= endIndex) {
+////            middleIndex = startIndex + (endIndex - startIndex) / 2;
+////            System.out.println("startIndex: " + startIndex + ", endIndex: " + endIndex + ", middleIndex: " + middleIndex);
 ////
 ////            if (array[middleIndex] == elementToFind) {
+////                System.out.println("found " + elementToFind + " at " + middleIndex);
 ////                return middleIndex;
 ////            }
 ////
 ////            if (array[middleIndex] > elementToFind) {
-////                return searchBinaryRecursive(array, startIndex, middleIndex - 1, elementToFind);
+////                endIndex = middleIndex - 1;
 ////            } else {
-////                return searchBinaryRecursive(array, middleIndex + 1, endIndex, elementToFind);
+////                startIndex = middleIndex + 1;
 ////            }
 ////        }
 ////        return -1;
 ////    }
 //
-//    public static void bubbleSort(int[] array) {
-//        boolean isSorted = false;
-//        while (!isSorted) {
-//            isSorted = true;
-//            for (int i = 1; i < array.length; i++) {
-//                if (array[i] < array[i - 1]) {
-//                    int temp = array[i];
-//                    array[i] = array[i - 1];
-//                    array[i - 1] = temp;
-//                    isSorted = false;
+//        public static int searchBinaryRecursive ( int array[], int startIndex, int endIndex, int elementToFind){
+//            if (endIndex >= startIndex) {
+//                int middleIndex = startIndex + (endIndex - startIndex) / 2;
+//
+//                if (array[middleIndex] == elementToFind) {
+//                    return middleIndex;
+//                }
+//
+//                if (array[middleIndex] > elementToFind) {
+//                    return searchBinaryRecursive(array, startIndex, middleIndex - 1, elementToFind);
+//                } else {
+//                    return searchBinaryRecursive(array, middleIndex + 1, endIndex, elementToFind);
+//                }
+//            }
+//            return -1;
+//        }
+//////
+////    public static void bubbleSort(int[] array) {
+////        boolean isSorted = false;
+////        while (!isSorted) {
+////            isSorted = true;
+////            for (int i = 1; i < array.length; i++) {
+////                if (array[i] < array[i - 1]) {
+////                    int temp = array[i];
+////                    array[i] = array[i - 1];
+////                    array[i - 1] = temp;
+////                    isSorted = false;
+////                }
+////            }
+////        }
+////    }
+////}
+//
+////public class Task {                                                                                        // 2nd ver.
+////    public static void main(String[] args) {
+////        int[] arr = new int[]{89, 57, 91, 47, 95, 3, 27, 22, 67, 99};
+////        bubbleSort(arr);
+////        System.out.println(Arrays.toString(arr));
+////        int index = binarySearch(arr, 3);
+////        print(3, index);
+////    }
+////
+////        public static int binarySearch(int arr[], int elementToSearch) {
+////
+////            int firstIndex = 0;
+////            int lastIndex = arr.length - 1;
+////
+////            // условие прекращения (элемент не представлен)
+////            while(firstIndex <= lastIndex) {
+////                int middleIndex = (firstIndex + lastIndex) / 2;
+////                // если средний элемент - целевой элемент, вернуть его индекс
+////                if (arr[middleIndex] == elementToSearch) {
+////                    return middleIndex;
+////                }
+////
+////                // если средний элемент меньше
+////                // направляем наш индекс в middle+1, убирая первую часть из рассмотрения
+////                else if (arr[middleIndex] < elementToSearch)
+////                    firstIndex = middleIndex + 1;
+////
+////                    // если средний элемент больше
+////                    // направляем наш индекс в middle-1, убирая вторую часть из рассмотрения
+////                else if (arr[middleIndex] > elementToSearch)
+////                    lastIndex = middleIndex - 1;
+////
+////            }
+////            return -1;
+////        }
+////
+////    public static void print(int elementToSearch, int index) {
+////        if (index == -1){
+////            System.out.println(elementToSearch + " not found.");
+////        }
+////        else {
+////            System.out.println(elementToSearch + " found at index: " + index);
+////        }
+////    }
+////
+//        public static void bubbleSort ( int[] array){
+//            boolean isSorted = false;
+//            while (!isSorted) {
+//                isSorted = true;
+//                for (int i = 1; i < array.length; i++) {
+//                    if (array[i] < array[i - 1]) {
+//                        int temp = array[i];
+//                        array[i] = array[i - 1];
+//                        array[i - 1] = temp;
+//                        isSorted = false;
+//                    }
 //                }
 //            }
 //        }
 //    }
-//}
 
-public class Task {                                                                                                     // 2nd ver.
+/**
+ *Search for an item using, built-in functions:  Arrays.sort() and Arrays.binarySearch()
+  */
+
+public class Task {
+
     public static void main(String[] args) {
-        int[] arr = new int[]{89, 57, 91, 47, 95, 3, 27, 22, 67, 99};
-        bubbleSort(arr);
-        System.out.println(Arrays.toString(arr));
-        int index = binarySearch(arr, 89);
-        print(89, index);
-    }
-
-        public static int binarySearch(int arr[], int elementToSearch) {
-
-            int firstIndex = 0;
-            int lastIndex = arr.length - 1;
-
-            // условие прекращения (элемент не представлен)
-            while(firstIndex <= lastIndex) {
-                int middleIndex = (firstIndex + lastIndex) / 2;
-                // если средний элемент - целевой элемент, вернуть его индекс
-                if (arr[middleIndex] == elementToSearch) {
-                    return middleIndex;
-                }
-
-                // если средний элемент меньше
-                // направляем наш индекс в middle+1, убирая первую часть из рассмотрения
-                else if (arr[middleIndex] < elementToSearch)
-                    firstIndex = middleIndex + 1;
-
-                    // если средний элемент больше
-                    // направляем наш индекс в middle-1, убирая вторую часть из рассмотрения
-                else if (arr[middleIndex] > elementToSearch)
-                    lastIndex = middleIndex - 1;
-
-            }
-            return -1;
-        }
-
-    public static void print(int elementToSearch, int index) {
-        if (index == -1){
-            System.out.println(elementToSearch + " not found.");
-        }
-        else {
-            System.out.println(elementToSearch + " found at index: " + index);
-        }
-    }
-
-    public static void bubbleSort(int[] array) {
-        boolean isSorted = false;
-        while (!isSorted) {
-            isSorted = true;
-            for (int i = 1; i < array.length; i++) {
-                if (array[i] < array[i - 1]) {
-                    int temp = array[i];
-                    array[i] = array[i - 1];
-                    array[i - 1] = temp;
-                    isSorted = false;
-                }
-            }
-        }
+        int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
+        Arrays.sort(array);
+        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.binarySearch(array, 55));
     }
 }
+
+
+
+//public class Task{
+//    public static void main(String[] args) {
+//        counter(3);
+//    }
+//    public static void counter(int n){
+//        if (n == 0){
+//            return ;
+//        }
+//        System.out.println(n);
+//        counter(n - 1);
+//    }
+//}
+//
+//public class Task{
+//    public static void main(String[] args) {
+//        System.out.println(fac(5));
+//    }
+//    public static int fac(int n){
+//        if (n == 1)
+//            return 1;
+//        return n * fac(n - 1);
+//    }
+//}
 
 
